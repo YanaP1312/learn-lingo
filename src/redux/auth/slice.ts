@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { User } from "firebase/auth";
+import { loginUser, logoutUser, registerUser } from "./operations";
 
 interface AuthState {
   user: User | null;
@@ -19,9 +20,18 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase;
+    builder
+      .addCase(registerUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.user = null;
+      });
   },
 });
 
 export const { setUser } = authSlice.actions;
-export default authSlice.reducer;
+export const authReducer = authSlice.reducer;
