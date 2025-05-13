@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function UserMenu() {
   return (
     <div>
@@ -7,7 +9,9 @@ export default function UserMenu() {
         </svg>
         Log out
       </button>
-      <Favorites to="/favorites" />
+      <button>
+        <Link to="/favorites">Favorites </Link>
+      </button>
     </div>
   );
 }
