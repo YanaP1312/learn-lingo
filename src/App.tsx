@@ -5,6 +5,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { setUser } from "./redux/auth/slice";
 import { auth } from "./firebase";
 import { useDispatch } from "react-redux";
+import { Routes } from "react-router-dom";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +20,9 @@ function App() {
     <div>
       <Navigation />
     </div>
+<Routes>
+        <Route/>
+</Routes>
   );
 }
 
