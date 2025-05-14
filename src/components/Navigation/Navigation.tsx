@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Link, NavLink } from "react-router-dom";
 import s from "./Navigation.module.css";
 
-const buildLinkClass = ({ isActive }: { isActive: boolean }) => {
+export const buildLinkClass = ({ isActive }: { isActive: boolean }) => {
   return clsx(s.link, isActive && s.active);
 };
 

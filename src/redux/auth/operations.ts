@@ -3,17 +3,29 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../../firebase";
 
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
-  async ({ email, password }: { email: string; password: string }) => {
+  async ({
+    name,
+    email,
+    password,
+  }: {
+    name: string;
+    email: string;
+    password: string;
+  }) => {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
+    if (auth.currentUser) {
+      await updateProfile(auth.currentUser, { displayName: name });
+    }
     return userCredential.user;
   }
 );

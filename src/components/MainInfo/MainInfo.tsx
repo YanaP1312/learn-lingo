@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 const MainInfo = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <h1>
@@ -9,7 +12,9 @@ const MainInfo = () => {
         Elevate your language proficiency to new heights by connecting with
         highly qualified and experienced tutors.
       </p>
-      <button>Get started</button>
+      <button type="button" onClick={() => navigate("/teachers")}>
+        Get started
+      </button>
     </div>
   );
 };
