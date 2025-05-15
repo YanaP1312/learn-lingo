@@ -23,7 +23,7 @@ export const addFavorites = createAsyncThunk(
   }
 );
 
-export const removeFavorite = createAsyncThunk(
+export const removeFavorites = createAsyncThunk(
   "favorites/removeFavorites",
   async ({ userId, teacherId }: { userId: string; teacherId: string }) => {
     const db = getDatabase();

@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { addFavorites, fetchFavorites, removeFavorite } from "./operations";
+import { addFavorites, fetchFavorites, removeFavorites } from "./operations";
 import type { FavoritesState } from "../../App.types";
 import { filterTeachers } from "../utils";
 
@@ -51,7 +51,7 @@ const favoritesSlice = createSlice({
         state.favorites = action.payload;
         state.filtered = filterTeachers(action.payload, state.filters);
       })
-      .addCase(removeFavorite.fulfilled, (state, action) => {
+      .addCase(removeFavorites.fulfilled, (state, action) => {
         state.favorites = action.payload;
         state.filtered = filterTeachers(action.payload, state.filters);
       })
