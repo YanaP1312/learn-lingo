@@ -1,11 +1,18 @@
+import type { Teacher } from "../../App.types";
 import TeacherCard from "../TeacherCard/TeacherCard";
 
-const TeacherList = ({ teachers }) => {
+interface Props {
+  teachers: Teacher[];
+}
+
+const TeacherList = ({ teachers }: Props) => {
   return (
     <section>
       <ul>
         {teachers.map((teacher) => (
-          <TeacherCard teacher={teacher} key={teacher.id} />
+          <li key={teacher.id}>
+            <TeacherCard teacher={teacher} />
+          </li>
         ))}
       </ul>
     </section>

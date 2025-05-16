@@ -3,8 +3,10 @@ import Modal from "../Modal/Modal";
 import ModalButton from "../ModalButton/ModalButton";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { bookLessonSchema } from "../../validationSchema";
+import type { Teacher } from "../../App.types";
 
-interface Props {
+interface BookLessonModalProps {
+  teacher: Teacher;
   onClose: () => void;
 }
 
@@ -15,13 +17,14 @@ interface BookLessonData {
   reason: string;
 }
 
-const BookLessonModal = ({ teacher }, { onClose }: Props) => {
+const BookLessonModal = ({ teacher, onClose }: BookLessonModalProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<BookLessonData>({ resolver: yupResolver(bookLessonSchema) });
   const onSubmit = (data: BookLessonData) => {
+    onClose();
     console.log("Book lesson", data);
   };
   return (

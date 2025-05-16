@@ -10,16 +10,25 @@ import HomePage from "./pages/HomePage/HomePage";
 import TeachersPage from "./pages/TeachersPage/TeachersPage";
 import { selectUser } from "./redux/auth/selectors";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
+import { useAppSelector } from "./redux/hook";
 
 function App() {
-  const user = useSelector(selectUser);
+  const currentUser = useAppSelector(selectUser);
+
   const dispatch = useDispatch();
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      dispatch(setUser(user));
+      if (user) {
+        const serializedUser = {
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+        };
+        dispatch(setUser(serializedUser));
+      }
     });
     return () => unsubscribe();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
@@ -29,7 +38,7 @@ function App() {
         <Route path="/teachers" element={<TeachersPage />} />
         <Route
           path="/favorites"
-          element={user ? <FavoritesPage /> : <Navigate to="/" />}
+          element={currentUser ? <FavoritesPage /> : <Navigate to="/" />}
         />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

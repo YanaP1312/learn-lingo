@@ -1,9 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { User } from "firebase/auth";
 import { loginUser, logoutUser, registerUser } from "./operations";
 
 interface AuthState {
-  user: User | null;
+  user: {
+    uid: string;
+    email: string | null;
+    displayName: string | null;
+  } | null;
   status: "idle" | "loading" | "succeeded" | "failed";
 }
 const initialState: AuthState = {

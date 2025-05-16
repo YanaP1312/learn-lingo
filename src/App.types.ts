@@ -5,7 +5,7 @@ export type Teacher = {
   experience: string;
   languages: string[];
   lesson_info: string;
-  lesson_done: number;
+  lessons_done: number;
   levels: string[];
   name: string;
   price_per_hour: number;

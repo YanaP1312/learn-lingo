@@ -8,14 +8,30 @@ import { selectFavorites } from "../../redux/favorites/selectors";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import AdditionalInfo from "../AdditionalInfo/AdditionalInfo";
 import BookLessonModal from "../BookLessonModal/BookLessonModal";
+import { selectUser } from "../../redux/auth/selectors";
 
-const TeacherCard = (teacher) => {
+interface Props {
+  teacher: Teacher;
+}
+
+const TeacherCard = ({ teacher }: Props) => {
   const dispatch = useAppDispatch();
   const favorites = useAppSelector(selectFavorites);
+  const user = useAppSelector(selectUser);
   const [isOpenAdditional, setIsOpenAdditional] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const isFavorite = favorites.some((fav) => fav.id === teacher.id);
+  const handleFavoriteToggle = () => {
+    if (!user?.uid) return;
+    const payload = { userId: user.uid, teacherId: teacher.id };
+    if (isFavorite) {
+      dispatch(removeFavorites(payload));
+    } else {
+      dispatch(addFavorites(payload));
+    }
+  };
+
   return (
     <div>
       <div>
@@ -53,11 +69,7 @@ const TeacherCard = (teacher) => {
                 </b>
               </li>
             </ul>
-            <div
-              onClick={() => {
-                isFavorite ? dispatch(removeFavorites) : dispatch(addFavorites);
-              }}
-            >
+            <button onClick={handleFavoriteToggle}>
               <svg>
                 <use
                   href={
@@ -67,7 +79,7 @@ const TeacherCard = (teacher) => {
                   }
                 />
               </svg>
-            </div>
+            </button>
           </div>
         </div>
         <h2>{`${teacher.name} ${teacher.surname}`}</h2>
@@ -76,7 +88,7 @@ const TeacherCard = (teacher) => {
           <li>
             Speacks:&nbsp;
             <b>
-              <u>{teacher.languages.map((language) => language.join(" "))}</u>
+              <u>{teacher.languages.join(", ")}</u>
             </b>
           </li>
           <li>
@@ -84,19 +96,19 @@ const TeacherCard = (teacher) => {
           </li>
           <li>
             Conditions:&nbsp;
-            <b>{teacher.conditions.map((condition) => condition.join(", "))}</b>
+            <b>{teacher.conditions.join(", ")}</b>
           </li>
         </ul>
-        {isOpenAdditional ? (
-          <AdditionalInfo teacher={teacher} />
-        ) : (
+        {!isOpenAdditional ? (
           <button type="button" onClick={() => setIsOpenAdditional(true)}>
             Read more
           </button>
+        ) : (
+          <AdditionalInfo teacher={teacher} />
         )}
         <ul>
           {teacher.levels.map((level) => (
-            <li>{`#${level}`}</li>
+            <li key={level}>{`#${level}`}</li>
           ))}
         </ul>
         {isOpenAdditional && (
@@ -104,7 +116,12 @@ const TeacherCard = (teacher) => {
             Book trial lesson
           </button>
         )}
-        {isOpenModal && <BookLessonModal teacher={teacher} />}
+        {isOpenModal && (
+          <BookLessonModal
+            onClose={() => setIsOpenModal(false)}
+            teacher={teacher}
+          />
+        )}
       </div>
     </div>
   );
