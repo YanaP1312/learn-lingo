@@ -21,7 +21,6 @@ export type Review = {
 };
 
 export interface BaseTeachersState {
-  filtered: Teacher[];
   visibleCount: number;
   filters: {
     languages: string | null;

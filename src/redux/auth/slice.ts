@@ -7,11 +7,11 @@ interface AuthState {
     email: string | null;
     displayName: string | null;
   } | null;
-  status: "idle" | "loading" | "succeeded" | "failed";
+  status: "checking" | "authenticated" | "unauthenticated";
 }
 const initialState: AuthState = {
   user: null,
-  status: "idle",
+  status: "checking",
 };
 
 const authSlice = createSlice({
@@ -20,6 +20,9 @@ const authSlice = createSlice({
   reducers: {
     setUser(state, action) {
       state.user = action.payload;
+    },
+    setAuthStatus(state, action) {
+      state.status = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -36,5 +39,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { setUser } = authSlice.actions;
+export const { setUser, setAuthStatus } = authSlice.actions;
 export const authReducer = authSlice.reducer;

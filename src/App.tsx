@@ -1,21 +1,23 @@
 import { useEffect } from "react";
 import "./App.css";
 import { onAuthStateChanged } from "firebase/auth";
-import { setUser } from "./redux/auth/slice";
+import { setAuthStatus, setUser } from "./redux/auth/slice";
 import { auth } from "./firebase";
-import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import AppBar from "./components/AppBar/AppBar";
 import HomePage from "./pages/HomePage/HomePage";
 import TeachersPage from "./pages/TeachersPage/TeachersPage";
-import { selectUser } from "./redux/auth/selectors";
+import { selectStatus, selectUser } from "./redux/auth/selectors";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
-import { useAppSelector } from "./redux/hook";
+import { useAppDispatch, useAppSelector } from "./redux/hook";
+import { fetchFavorites } from "./redux/favorites/operations";
 
 function App() {
   const currentUser = useAppSelector(selectUser);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const authStatus = useAppSelector(selectStatus);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -25,10 +27,21 @@ function App() {
           displayName: user.displayName,
         };
         dispatch(setUser(serializedUser));
+        dispatch(setAuthStatus("authenticated"));
+      } else {
+        dispatch(setUser(null));
+        dispatch(setAuthStatus("unauthenticated"));
       }
     });
     return () => unsubscribe();
   }, [dispatch]);
+
+  useEffect(() => {
+    if (currentUser?.uid) {
+      dispatch(fetchFavorites(currentUser.uid));
+    }
+  }, [currentUser?.uid, dispatch]);
+  if (authStatus === "checking") return null;
 
   return (
     <div>

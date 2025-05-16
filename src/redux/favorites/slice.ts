@@ -1,11 +1,9 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { addFavorites, fetchFavorites, removeFavorites } from "./operations";
 import type { FavoritesState } from "../../App.types";
-import { filterTeachers } from "../utils";
 
 const initialState: FavoritesState = {
   favorites: [],
-  filtered: [],
   visibleCount: 4,
   filters: {
     languages: null,
@@ -28,11 +26,6 @@ const favoritesSlice = createSlice({
     setFavPriceFilter(state, action: PayloadAction<number | null>) {
       state.filters.price_per_hour = action.payload;
     },
-    applyFavFilters(state) {
-      state.filtered = filterTeachers(state.favorites, state.filters);
-      state.visibleCount = 4;
-    },
-
     loadMoreFavorites(state) {
       state.visibleCount += 4;
     },
@@ -45,15 +38,19 @@ const favoritesSlice = createSlice({
       .addCase(fetchFavorites.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.favorites = action.payload;
-        state.filtered = filterTeachers(action.payload, state.filters);
       })
       .addCase(addFavorites.fulfilled, (state, action) => {
-        state.favorites = action.payload;
-        state.filtered = filterTeachers(action.payload, state.filters);
+        const teacher = action.payload;
+        if (teacher && !state.favorites.some((t) => t.id === teacher.id)) {
+          state.favorites.push(teacher);
+        }
+        console.log("CHECKING IF ALREADY FAVORITE:", teacher?.id);
       })
       .addCase(removeFavorites.fulfilled, (state, action) => {
-        state.favorites = action.payload;
-        state.filtered = filterTeachers(action.payload, state.filters);
+        console.log("Removing from state:", action.payload);
+        state.favorites = state.favorites.filter(
+          (t) => t.id !== action.payload
+        );
       })
       .addCase(fetchFavorites.rejected, (state) => {
         state.status = "failed";
@@ -65,7 +62,6 @@ export const {
   setFavLanguageFilter,
   setFavLevelFilter,
   setFavPriceFilter,
-  applyFavFilters,
   loadMoreFavorites,
 } = favoritesSlice.actions;
 

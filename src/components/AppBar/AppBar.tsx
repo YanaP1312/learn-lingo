@@ -1,11 +1,12 @@
 import { selectUser } from "../../redux/auth/selectors";
-import { useSelector } from "react-redux";
 import Navigation from "../Navigation/Navigation";
 import UserMenu from "../UserMenu/UserMenu";
 import AuthNav from "../AuthNav/AuthNav";
+import { useAppSelector } from "../../redux/hook";
 
 const AppBar = () => {
-  const user = useSelector(selectUser);
+  const user = useAppSelector(selectUser);
+
   return (
     <header>
       <Navigation />

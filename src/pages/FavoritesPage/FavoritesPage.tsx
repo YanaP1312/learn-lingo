@@ -1,24 +1,37 @@
 import TeacherList from "../../components/TeachersList/TeachersList";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import {
-  selectFavFiltered,
-  selectFavorites,
+  selectFavAllFilteredCount,
+  selectFavVisibleTeachers,
 } from "../../redux/favorites/selectors";
 import { useEffect } from "react";
 import { fetchFavorites } from "../../redux/favorites/operations";
-import { selectUser } from "../../redux/auth/selectors";
+import { selectStatus, selectUser } from "../../redux/auth/selectors";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import {
-  applyFavFilters,
+  loadMoreFavorites,
   setFavLanguageFilter,
   setFavLevelFilter,
   setFavPriceFilter,
 } from "../../redux/favorites/slice";
+import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn";
+import { useNavigate } from "react-router-dom";
 
 const FavoritesPage = () => {
   const dispatch = useAppDispatch();
-  const favTeachers = useAppSelector(selectFavFiltered);
+  const favTeachers = useAppSelector(selectFavVisibleTeachers);
+  const totalFavCount = useAppSelector(selectFavAllFilteredCount);
+  const shouldShowLoadMore = favTeachers.length < totalFavCount;
   const user = useAppSelector(selectUser);
+
+  const authStatus = useAppSelector(selectStatus);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (authStatus !== "checking" && !user) {
+      navigate("/");
+    }
+  }, [authStatus, user, navigate]);
 
   useEffect(() => {
     if (user?.uid) {
@@ -28,18 +41,17 @@ const FavoritesPage = () => {
 
   const handleLanguageChange = (value: string | null) => {
     dispatch(setFavLanguageFilter(value));
-    dispatch(applyFavFilters());
   };
 
   const handleLevelChange = (value: string | null) => {
     dispatch(setFavLevelFilter(value));
-    dispatch(applyFavFilters());
   };
 
   const handlePriceChange = (value: number | null) => {
     dispatch(setFavPriceFilter(value));
-    dispatch(applyFavFilters());
   };
+
+  const handleAddCads = () => dispatch(loadMoreFavorites());
 
   return (
     <main>
@@ -50,6 +62,7 @@ const FavoritesPage = () => {
         onPriceChange={handlePriceChange}
       />
       <TeacherList teachers={favTeachers} />
+      {shouldShowLoadMore && <LoadMoreBtn onClick={handleAddCads} />}
     </main>
   );
 };
