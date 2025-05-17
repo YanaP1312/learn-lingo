@@ -1,0 +1,16 @@
+.wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.btnLoadMore {
+  margin-bottom: 64px;
+  background-color: var(--accentColor);
+  padding: 16px 48px;
+  font-size: 18px;
+  line-height: 1.56;
+}
+
+.btnLoadMore:hover {
+  background-color: var(--themeColor);
+}

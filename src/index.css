@@ -7,6 +7,7 @@
   --color-text: #121417;
   --background-color: #ffffff;
   --background-grey: #f8f8f8;
+  --grey: #8a8a89;
   --accentColor: #f4c550;
   --themeColor: #fbe9ba;
   --transition-default: 0.3s ease-in-out;
@@ -29,9 +30,10 @@ body {
 }
 
 .container {
-  width: 1440;
+  width: 1440px;
   padding-left: 64px;
   padding-right: 64px;
+  margin: 0 auto;
 }
 
 ul,

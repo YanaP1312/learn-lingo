@@ -1,0 +1,28 @@
+.wrap {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.wrapImg {
+  border-radius: 50%;
+  border: 1px solid var(--accentColor);
+}
+
+.listIcon {
+  width: 16px;
+  height: 16px;
+  fill: var(--accentColor);
+}
+
+.wrapRating {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.listReviews {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}

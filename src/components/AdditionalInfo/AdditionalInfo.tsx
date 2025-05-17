@@ -1,13 +1,22 @@
-const AdditionalInfo = ({ teacher }) => {
+import type { Teacher } from "../../helpers/App.types";
+import { FaStar } from "react-icons/fa";
+import s from "./AdditionalInfo.module.css";
+
+interface Props {
+  teacher: Teacher;
+}
+
+const AdditionalInfo = ({ teacher }: Props) => {
   return (
     <div>
-      <p>{teacher.experience}</p>
-      <ul>
-        {teacher.reviews.map((review) => {
+      <p style={{ marginBottom: "32px" }}>{teacher.experience}</p>
+      <ul className={s.listReviews}>
+        {teacher.reviews.map((review) => (
           <li>
-            <div>
-              <div>
+            <div className={s.wrap}>
+              <div className={s.wrapImg}>
                 <img
+                  style={{ borderRadius: "50%" }}
                   src="/image/comment.jpeg"
                   width={44}
                   height={44}
@@ -16,18 +25,16 @@ const AdditionalInfo = ({ teacher }) => {
               </div>
 
               <div>
-                <p>{review.reviewer_name}</p>
-                <div>
-                  <svg>
-                    <use href="/sprite.svg#icon-star" />
-                  </svg>
-                  <p>{review.reviewer_rating}</p>
+                <p style={{ color: "var(--grey)" }}>{review.reviewer_name}</p>
+                <div className={s.wrapRating}>
+                  <FaStar className={s.listIcon} />
+                  <p>{review.reviewer_rating.toFixed(1)}</p>
                 </div>
               </div>
-              <b>{review.comment}</b>
             </div>
-          </li>;
-        })}
+            <b>{review.comment}</b>
+          </li>
+        ))}
       </ul>
     </div>
   );
