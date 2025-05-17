@@ -1,0 +1,33 @@
+.btn {
+  color: var(--accentColor);
+  border: 1px solid var(--accentColor);
+  border-radius: 12px;
+  padding: 14px 12px;
+  transition: color var(--transition-default),
+    border-color var(--transition-default);
+}
+
+.btn:hover {
+  color: var(--themeColor);
+  border-color: var(--themeColor);
+}
+
+.list {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background: #fff;
+  border: 1px solid var(--accentColor);
+  border-radius: 12px;
+  padding: 8px;
+  z-index: 100;
+}
+
+.themeBtn {
+  padding: 6px 10px;
+  transition: background-color var(--transition-default);
+}
+
+.themeBtn:hover {
+  background-color: var(--hover-color);
+}

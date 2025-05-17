@@ -1,0 +1,18 @@
+.wrap {
+  display: flex;
+  gap: 16px;
+  margin-right: 16px;
+}
+
+.btnReg {
+  background-color: #121417;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.25;
+  padding: 14px 39px;
+  transition: background-color var(--transition-default);
+}
+
+.btnReg:hover {
+  background-color: var(--themeColor);
+}

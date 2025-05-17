@@ -20,10 +20,9 @@ function App() {
   const dispatch = useAppDispatch();
   const authStatus = useAppSelector(selectStatus);
   const theme = useAppSelector(selectTheme);
-
   useEffect(() => {
     const selected = themes[theme];
-    document.documentElement.style.setProperty("--color-color", selected.color);
+    document.documentElement.style.setProperty("--themeColor", selected.color);
     document.documentElement.style.setProperty(
       "--accentColor",
       selected.accentColor
@@ -56,7 +55,7 @@ function App() {
   if (authStatus === "checking") return null;
 
   return (
-    <div>
+    <div className="container">
       <AppBar />
       <Routes>
         <Route path="/" element={<HomePage />} />

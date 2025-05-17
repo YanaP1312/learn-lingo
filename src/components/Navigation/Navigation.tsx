@@ -8,14 +8,14 @@ export const buildLinkClass = ({ isActive }: { isActive: boolean }) => {
 
 export default function Navigation() {
   return (
-    <header>
-      <Link to="/">
+    <div className={s.wrap}>
+      <Link className={s.logo} to="/">
         <svg width={28} height={28}>
           <use href="/sprite.svg#icon-ukraine" />
         </svg>
         LearnLingo
       </Link>
-      <nav>
+      <nav className={s.nav}>
         <NavLink to="/" className={buildLinkClass}>
           Home
         </NavLink>
@@ -23,6 +23,6 @@ export default function Navigation() {
           Teachers
         </NavLink>
       </nav>
-    </header>
+    </div>
   );
 }

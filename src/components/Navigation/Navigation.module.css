@@ -1,7 +1,35 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  width: 660px;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.nav {
+  display: flex;
+  gap: 28px;
+}
+
 .link {
-  color: green;
+  color: var(--color-text);
+  transition: var(--transition-default);
 }
 
 .active {
-  color: greenyellow;
+  color: var(--accentColor);
+}
+
+.link:hover,
+.active:hover {
+  color: var(--themeColor);
 }

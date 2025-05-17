@@ -1,0 +1,17 @@
+.wrap {
+  background-color: var(--background-grey);
+  border-radius: 30px;
+  padding: 98px 64px;
+}
+
+.btn {
+  margin-top: 64px;
+  border-radius: 12px;
+  padding: 16px 88px;
+  background-color: var(--accentColor);
+  transition: var(--transition-default);
+}
+
+.btn:hover {
+  background-color: var(--themeColor);
+}

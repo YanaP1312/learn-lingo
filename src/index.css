@@ -1,36 +1,126 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  background-color: #ffffff;
-  --color-accentColor: #f4c550;
-  --color-color: #fbe9ba;
+  --font-main: "Roboto", sans-serif;
+  --line-height: 1.5;
+  --font-weight: 400;
+  --font-size: 16px;
+  --letter-spacing: -0.02em;
+  --color-text: #121417;
+  --background-color: #ffffff;
+  --background-grey: #f8f8f8;
+  --accentColor: #f4c550;
+  --themeColor: #fbe9ba;
+  --transition-default: 0.3s ease-in-out;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--color-text);
+  background-color: var(--background-color);
+  line-height: var(--line-height);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  letter-spacing: var(--letter-spacing);
+}
+
+.container {
+  width: 1440;
+  padding-left: 64px;
+  padding-right: 64px;
+}
+
+ul,
+ol {
+  list-style: none;
 }
 
 a {
   text-decoration: none;
-}
-
-body {
-  margin: 0;
-  max-width: 1440;
-  padding-left: 64px;
-  padding-right: 64px;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
+  color: inherit;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  border: none;
+  background-color: transparent;
   cursor: pointer;
-  transition: border-color 0.25s;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+input,
+textarea {
+  font-family: inherit;
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  border-radius: 12px;
+  padding-left: 18px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+select {
+  font-family: inherit;
+}
+
+fieldset {
+  border: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 1.17;
+  margin-bottom: 32px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  box-shadow: 0 0 0 1000px var(--color-bg-light) inset !important;
+  -webkit-text-fill-color: var(--color-dark) !important;
+  transition: background-color 9999s ease-out 0s;
+}
+
+.logBtn {
+  background-color: transparent;
+  padding: 14px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.logIcon {
+  margin-right: 4px;
+  fill: var(--accentColor);
+  width: 20px;
+  height: 20px;
+  transition: fill var(--transition-default);
+}
+
+.logBtn:hover .logIcon {
+  fill: var(--themeColor);
 }

@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../redux/hook";
-import { selectTheme, setTheme } from "../../redux/theme/slice";
+import React, { useState } from "react";
+import { useAppDispatch } from "../../redux/hook";
+import { setTheme } from "../../redux/theme/slice";
 import { themes, type ThemeName } from "../../helpers/themes";
+import s from "./ThemeSelector.module.css";
 
 const ThemeSelector = () => {
-  const current = useAppSelector(selectTheme);
   const dispatch = useAppDispatch();
   const [open, setOpen] = useState(false);
 
@@ -15,43 +15,22 @@ const ThemeSelector = () => {
 
   return (
     <div style={{ position: "relative" }}>
-      <button
-        onClick={() => setOpen(!open)}
-        style={{
-          background: "transparent",
-          color: themes[current].accentColor,
-          border: `1px solid ${themes[current].accentColor}`,
-          borderRadius: "6px",
-          padding: "6px 12px",
-        }}
-      >
+      <button onClick={() => setOpen(!open)} className={s.btn}>
         Theme
       </button>
       {open && (
-        <ul
-          style={{
-            position: "absolute",
-            top: "110%",
-            left: 0,
-            background: "#fff",
-            border: "1px solid #ccc",
-            borderRadius: "6px",
-            padding: 8,
-            zIndex: 100,
-            listStyle: "none",
-          }}
-        >
+        <ul className={s.list}>
           {Object.entries(themes).map(([name, t]) => (
             <li key={name}>
               <button
                 onClick={() => handleSelect(name as ThemeName)}
-                style={{
-                  background: "transparent",
-                  border: "none",
-                  color: t.accentColor,
-                  cursor: "pointer",
-                  padding: "6px 10px",
-                }}
+                className={s.themeBtn}
+                style={
+                  {
+                    color: t.accentColor,
+                    "--hover-color": t.color,
+                  } as React.CSSProperties
+                }
               >
                 {name}
               </button>
