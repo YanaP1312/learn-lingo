@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import "./App.css";
 import { onAuthStateChanged } from "firebase/auth";
 import { setAuthStatus, setUser } from "./redux/auth/slice";
-import { auth } from "./firebase";
+import { auth } from "./helpers/firebase";
 import { Navigate, Route, Routes } from "react-router-dom";
 import AppBar from "./components/AppBar/AppBar";
 import HomePage from "./pages/HomePage/HomePage";
@@ -11,12 +11,24 @@ import { selectStatus, selectUser } from "./redux/auth/selectors";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import { useAppDispatch, useAppSelector } from "./redux/hook";
 import { fetchFavorites } from "./redux/favorites/operations";
+import { selectTheme } from "./redux/theme/slice";
+import { themes } from "./helpers/themes";
 
 function App() {
   const currentUser = useAppSelector(selectUser);
 
   const dispatch = useAppDispatch();
   const authStatus = useAppSelector(selectStatus);
+  const theme = useAppSelector(selectTheme);
+
+  useEffect(() => {
+    const selected = themes[theme];
+    document.documentElement.style.setProperty("--color-color", selected.color);
+    document.documentElement.style.setProperty(
+      "--accentColor",
+      selected.accentColor
+    );
+  }, [theme]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {

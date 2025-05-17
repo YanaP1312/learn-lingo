@@ -3,6 +3,7 @@ import Navigation from "../Navigation/Navigation";
 import UserMenu from "../UserMenu/UserMenu";
 import AuthNav from "../AuthNav/AuthNav";
 import { useAppSelector } from "../../redux/hook";
+import ThemeSelector from "../ThemeSelector/ThemeSelector";
 
 const AppBar = () => {
   const user = useAppSelector(selectUser);
@@ -11,6 +12,7 @@ const AppBar = () => {
     <header>
       <Navigation />
       {user ? <UserMenu /> : <AuthNav />}
+      <ThemeSelector />
     </header>
   );
 };

@@ -1,4 +1,4 @@
-import type { Teacher } from "../../App.types";
+import type { Teacher } from "../../helpers/App.types";
 import TeacherCard from "../TeacherCard/TeacherCard";
 
 interface Props {

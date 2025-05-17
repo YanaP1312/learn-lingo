@@ -1,4 +1,4 @@
-import type { Teacher } from "../App.types";
+import type { Teacher } from "../helpers/App.types";
 
 export function filterTeachers(
   teachers: Teacher[],

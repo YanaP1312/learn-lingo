@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { selectStatus } from "../../redux/auth/selectors";
 
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
-import { loginSchema } from "../../validationSchema";
+import { loginSchema } from "../../helpers/validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginUser } from "../../redux/auth/operations";
 import Modal from "../Modal/Modal";

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { get, getDatabase, ref, remove, set } from "firebase/database";
-import type { Teacher } from "../../App.types";
+import type { Teacher } from "../../helpers/App.types";
 
 export const fetchFavorites = createAsyncThunk(
   "favorites/fetchFavorites",

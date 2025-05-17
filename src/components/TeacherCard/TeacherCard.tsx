@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import type { Teacher } from "../../App.types";
+import type { Teacher } from "../../helpers/App.types";
 import {
   addFavorites,
   removeFavorites,

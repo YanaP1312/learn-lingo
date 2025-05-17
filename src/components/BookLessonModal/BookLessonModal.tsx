@@ -2,8 +2,8 @@ import { useForm } from "react-hook-form";
 import Modal from "../Modal/Modal";
 import ModalButton from "../ModalButton/ModalButton";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { bookLessonSchema } from "../../validationSchema";
-import type { Teacher } from "../../App.types";
+import { bookLessonSchema } from "../../helpers/validationSchema";
+import type { Teacher } from "../../helpers/App.types";
 
 interface BookLessonModalProps {
   teacher: Teacher;

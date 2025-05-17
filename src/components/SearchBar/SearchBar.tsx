@@ -1,4 +1,4 @@
-import type { Teacher } from "../../App.types";
+import type { Teacher } from "../../helpers/App.types";
 import s from "./SearchBar.module.css";
 
 interface Props {

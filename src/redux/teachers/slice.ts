@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { fetchTeachers } from "./operations";
-import type { Teacher, TeachersState } from "../../App.types";
+import type { Teacher, TeachersState } from "../../helpers/App.types";
 
 const initialState: TeachersState = {
   teachers: [],

@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { addFavorites, fetchFavorites, removeFavorites } from "./operations";
-import type { FavoritesState } from "../../App.types";
+import type { FavoritesState } from "../../helpers/App.types";
 
 const initialState: FavoritesState = {
   favorites: [],
