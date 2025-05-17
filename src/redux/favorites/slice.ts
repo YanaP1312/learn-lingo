@@ -26,6 +26,9 @@ const favoritesSlice = createSlice({
     setFavPriceFilter(state, action: PayloadAction<number | null>) {
       state.filters.price_per_hour = action.payload;
     },
+    setFavVisibleCount(state, action: PayloadAction<number>) {
+      state.visibleCount = action.payload;
+    },
     loadMoreFavorites(state) {
       state.visibleCount += 4;
     },
@@ -62,6 +65,7 @@ export const {
   setFavLanguageFilter,
   setFavLevelFilter,
   setFavPriceFilter,
+  setFavVisibleCount,
   loadMoreFavorites,
 } = favoritesSlice.actions;
 

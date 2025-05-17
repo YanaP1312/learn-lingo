@@ -26,6 +26,9 @@ const teachersSlice = createSlice({
     setPriceFilter(state, action: PayloadAction<number | null>) {
       state.filters.price_per_hour = action.payload;
     },
+    setVisibleCount(state, action: PayloadAction<number>) {
+      state.visibleCount = action.payload;
+    },
     loadMoreTeachers(state) {
       state.visibleCount += 4;
     },
@@ -52,6 +55,7 @@ export const {
   setLanguageFilter,
   setLevelFilter,
   setPriceFilter,
+  setVisibleCount,
   loadMoreTeachers,
 } = teachersSlice.actions;
 

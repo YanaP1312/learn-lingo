@@ -16,7 +16,7 @@ export function filterTeachers(
       ? teacher.levels.includes(filters.levels)
       : true;
     const matchPrice = filters.price_per_hour
-      ? teacher.price_per_hour <= filters.price_per_hour
+      ? teacher.price_per_hour === filters.price_per_hour
       : true;
     return matchLang && matchLevel && matchPrice;
   });
