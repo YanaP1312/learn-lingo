@@ -37,6 +37,7 @@ const SearchBar = ({
   return (
     <section>
       <div className={s.filterBox}>
+        <label>Languages</label>
         <select
           value={languageValue || ""}
           onChange={(e) => onLanguageChange(e.target.value || null)}
@@ -48,6 +49,7 @@ const SearchBar = ({
             </option>
           ))}
         </select>
+        <label>Level of knowledge</label>
         <select
           value={levelValue || ""}
           onChange={(e) => onLevelChange(e.target.value || null)}
@@ -59,6 +61,7 @@ const SearchBar = ({
             </option>
           ))}
         </select>
+        <label>Price</label>
         <select
           value={priceValue?.toString() || ""}
           onChange={(e) => onPriceChange(Number(e.target.value) || null)}

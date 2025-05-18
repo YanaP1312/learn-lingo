@@ -14,16 +14,20 @@ export default function Modal({ onClose, children }: ModalProps) {
       if (e.key === "Escape") onClose();
     };
     document.addEventListener("keydown", handleEsc);
-    return () => document.removeEventListener("keydown", handleEsc);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleEsc);
+      document.body.style.overflow = "";
+    };
   }, [onClose]);
 
   return ReactDOM.createPortal(
     <div className={s.backdrop} onClick={onClose}>
       <div className={s.modal} onClick={(e) => e.stopPropagation()}>
         <button className={s.close} onClick={onClose} aria-label="Close">
-          <RxCross2 width={32} height={32} />
+          <RxCross2 className={s.icon} />
         </button>
-        {children}
+        <div className={s.modalContent}>{children}</div>
       </div>
     </div>,
     document.body

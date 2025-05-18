@@ -13,6 +13,7 @@ import { useAppDispatch, useAppSelector } from "./redux/hook";
 import { fetchFavorites } from "./redux/favorites/operations";
 import { selectTheme } from "./redux/theme/slice";
 import { themes } from "./helpers/themes";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const currentUser = useAppSelector(selectUser);
@@ -66,6 +67,14 @@ function App() {
         />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 }

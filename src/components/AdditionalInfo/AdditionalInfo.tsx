@@ -12,12 +12,12 @@ const AdditionalInfo = ({ teacher }: Props) => {
       <p style={{ marginBottom: "32px" }}>{teacher.experience}</p>
       <ul className={s.listReviews}>
         {teacher.reviews.map((review) => (
-          <li>
+          <li key={review.reviewer_name}>
             <div className={s.wrap}>
               <div className={s.wrapImg}>
                 <img
                   style={{ borderRadius: "50%" }}
-                  src="/image/comment.jpeg"
+                  src="/image/comment.png"
                   width={44}
                   height={44}
                   alt="Student avatar"

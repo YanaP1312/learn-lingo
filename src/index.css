@@ -63,6 +63,15 @@ textarea {
   padding-left: 18px;
   padding-top: 16px;
   padding-bottom: 16px;
+  width: 100%;
+  outline: none;
+  transform: border-color var(--transition-default);
+}
+
+input:active,
+input:focus,
+input:hover {
+  border-color: var(--accentColor);
 }
 
 select {
@@ -125,4 +134,10 @@ select:-webkit-autofill {
 
 .logBtn:hover .logIcon {
   fill: var(--themeColor);
+}
+
+.error {
+  font-size: 12px;
+  font-style: italic;
+  color: rgb(233, 59, 59);
 }

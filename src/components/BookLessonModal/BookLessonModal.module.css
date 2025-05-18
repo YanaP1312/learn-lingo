@@ -1,0 +1,98 @@
+.title {
+  font-size: 40px;
+  line-height: 1.2;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.desc {
+  line-height: 1.38;
+  color: rgba(18, 20, 23, 0.8);
+  margin-bottom: 20px;
+}
+
+.wrapInfo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.wrapInfo img {
+  border-radius: 50%;
+}
+
+.teacherInfo p {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  color: var(--grey);
+  margin-bottom: 4px;
+}
+
+.fieldsetBook {
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+.fieldsetBook legend {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.33;
+  margin-bottom: 20px;
+}
+
+.fieldsetBook label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  line-height: 1.38;
+}
+
+.fieldsetBook label:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+input[type="radio"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(18, 20, 23, 0.2);
+  border-radius: 10px;
+  background-color: var(--background-color);
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition-default);
+  display: inline-block;
+}
+
+input[type="radio"]::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: var(--accentColor);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: scale(0) translate(-50%, -50%);
+  transition: transform var(--transition-default);
+}
+
+input[type="radio"]:checked {
+  background-color: var(--background-color);
+  border-color: var(--accentColor);
+}
+
+input[type="radio"]:checked::before {
+  transform: scale(1) translate(-50%, -50%);
+}
+
+.wrapInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 40px;
+}

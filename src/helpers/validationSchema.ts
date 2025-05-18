@@ -11,8 +11,7 @@ export const registerSchema = yup.object({
   password: yup.string().min(6).required(),
 });
 
-const phoneRegExp =
-  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+const phoneRegExp = /^\+?[0-9\s\-()]{7,20}$/;
 
 export const bookLessonSchema = yup.object({
   fullName: yup.string().max(20).required(),

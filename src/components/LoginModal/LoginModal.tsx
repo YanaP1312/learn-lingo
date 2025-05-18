@@ -10,6 +10,7 @@ import ModalButton from "../ModalButton/ModalButton";
 
 import s from "./LoginModal.module.css";
 import PasswordInput from "../PasswordInput/PasswordInput";
+import { toast } from "react-toastify";
 
 interface Props {
   onClose: () => void;
@@ -32,23 +33,28 @@ const LoginModal = ({ onClose }: Props) => {
 
   const onSubmit = (data: LoginFormInputs) => {
     dispatch(loginUser(data)).then(() => onClose());
+    toast("🍀  Welcome");
   };
 
   return (
     <Modal onClose={onClose}>
-      <h2>Log In</h2>
-      <p>
+      <h2 className={s.title}>Log In</h2>
+      <p className={s.desc}>
         Welcome back! Please enter your credentials to access your account and
         continue your search for an teacher.
       </p>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="email" {...register("email")} placeholder="Email" />
-        <p>{errors.email?.message}</p>
+        <div className={s.wrapInput}>
+          <div>
+            <input type="email" {...register("email")} placeholder="Email" />
+            <p className="error">{errors.email?.message}</p>
+          </div>
 
-        <PasswordInput
-          registration={register("password")}
-          error={errors.password?.message}
-        />
+          <PasswordInput
+            registration={register("password")}
+            error={errors.password?.message}
+          />
+        </div>
 
         <ModalButton>
           {status === "loading" ? "Logging in..." : "Log in"}

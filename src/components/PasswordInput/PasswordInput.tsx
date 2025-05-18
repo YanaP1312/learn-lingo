@@ -17,17 +17,19 @@ const PasswordInput = ({
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => setShowPassword((prev) => !prev);
   return (
-    <div className={s.wrapper}>
-      <input
-        type={showPassword ? "text" : "password"}
-        {...registration}
-        placeholder={placeholder}
-        className={s.input}
-      />
-      <span onClick={togglePassword} className={s.iconPsw}>
-        {showPassword ? <PiEyeThin /> : <PiEyeSlashThin />}
-      </span>
-      {error && <p className={s.error}>{error}</p>}
+    <div>
+      <div className={s.wrap}>
+        <input
+          type={showPassword ? "text" : "password"}
+          {...registration}
+          placeholder={placeholder}
+          className={s.input}
+        />
+        <button onClick={togglePassword} className={s.iconPsw}>
+          {showPassword ? <PiEyeThin /> : <PiEyeSlashThin />}
+        </button>
+      </div>
+      {error && <p className="error">{error}</p>}
     </div>
   );
 };

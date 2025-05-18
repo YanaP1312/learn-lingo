@@ -11,13 +11,28 @@
   align-items: center;
 }
 .modal {
-  background: white;
+  background: var(--background-color);
   border-radius: 20px;
   padding: 64px;
   position: relative;
   width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
   max-width: 566px;
 }
+
+.modalContent {
+  overflow-y: auto;
+  flex-grow: 1;
+  max-height: calc(90vh - 128px);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.modalContent::-webkit-scrollbar {
+  display: none;
+}
+
 .close {
   position: absolute;
   top: 20px;
@@ -25,4 +40,28 @@
   border: none;
   background: transparent;
   cursor: pointer;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+
+  transition: color var(--transition-default);
+}
+
+.close:hover .icon {
+  color: var(--accentColor);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

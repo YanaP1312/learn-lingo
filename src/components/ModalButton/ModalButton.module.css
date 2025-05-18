@@ -1,2 +1,12 @@
 .btn {
+  width: 100%;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  background-color: var(--accentColor);
+  font-size: 18px;
+  line-height: 1.56;
+}
+
+.btn:hover {
+  background-color: var(--themeColor);
 }

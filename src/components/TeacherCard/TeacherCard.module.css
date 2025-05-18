@@ -128,4 +128,9 @@
   font-size: 18px;
   line-height: 1.6;
   margin-top: 32px;
+  transition: background-color var(--transition-default);
+}
+
+.btnBook:hover {
+  background-color: var(--themeColor);
 }
