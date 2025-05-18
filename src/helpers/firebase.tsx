@@ -15,3 +15,14 @@ const firebaseConfig = {
 
 const firebaseApp = initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp);
+
+export const getFirebaseErrorMessage = (code: string) => {
+  const map: Record<string, string> = {
+    "auth/email-already-in-use": "Email already in use",
+    "auth/user-not-found": "User not found",
+    "auth/wrong-password": "Wrong password",
+    "auth/invalid-email": "Invalid email",
+  };
+
+  return map[code] || "Authentication error";
+};

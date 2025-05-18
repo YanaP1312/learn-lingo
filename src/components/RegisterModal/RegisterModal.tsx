@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { selectStatus } from "../../redux/auth/selectors";
+import { selectError, selectStatus } from "../../redux/auth/selectors";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../helpers/validationSchema";
@@ -23,6 +23,7 @@ interface RegisterFormInputs {
 const RegisterModal = ({ onClose }: Props) => {
   const dispatch = useAppDispatch();
   const status = useAppSelector(selectStatus);
+  const error = useAppSelector(selectError);
 
   const {
     register,
@@ -30,9 +31,14 @@ const RegisterModal = ({ onClose }: Props) => {
     formState: { errors },
   } = useForm<RegisterFormInputs>({ resolver: yupResolver(registerSchema) });
 
-  const onSubmit = (data: RegisterFormInputs) => {
-    dispatch(registerUser(data)).then(() => onClose());
-    toast("🍀  Welcome");
+  const onSubmit = async (data: RegisterFormInputs) => {
+    try {
+      await dispatch(registerUser(data)).unwrap();
+      toast("🍀 Welcome!");
+      onClose();
+    } catch {
+      if (error) toast.error(error);
+    }
   };
 
   return (

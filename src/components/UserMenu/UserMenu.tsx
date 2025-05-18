@@ -7,6 +7,7 @@ import { CiLogout } from "react-icons/ci";
 
 export default function UserMenu() {
   const dispatch = useAppDispatch();
+
   return (
     <div className={s.wrap}>
       <NavLink to="/favorites" className={buildLinkClass}>

@@ -14,6 +14,7 @@ import { fetchFavorites } from "./redux/favorites/operations";
 import { selectTheme } from "./redux/theme/slice";
 import { themes } from "./helpers/themes";
 import { ToastContainer } from "react-toastify";
+import { clearFavorites } from "./redux/favorites/slice";
 
 function App() {
   const currentUser = useAppSelector(selectUser);
@@ -43,6 +44,7 @@ function App() {
       } else {
         dispatch(setUser(null));
         dispatch(setAuthStatus("unauthenticated"));
+        dispatch(clearFavorites());
       }
     });
     return () => unsubscribe();

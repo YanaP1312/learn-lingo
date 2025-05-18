@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { selectStatus } from "../../redux/auth/selectors";
+import { selectError, selectStatus } from "../../redux/auth/selectors";
 
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { loginSchema } from "../../helpers/validationSchema";
@@ -24,6 +24,7 @@ interface LoginFormInputs {
 const LoginModal = ({ onClose }: Props) => {
   const dispatch = useAppDispatch();
   const status = useAppSelector(selectStatus);
+  const error = useAppSelector(selectError);
 
   const {
     register,
@@ -31,9 +32,14 @@ const LoginModal = ({ onClose }: Props) => {
     formState: { errors },
   } = useForm<LoginFormInputs>({ resolver: yupResolver(loginSchema) });
 
-  const onSubmit = (data: LoginFormInputs) => {
-    dispatch(loginUser(data)).then(() => onClose());
-    toast("🍀  Welcome");
+  const onSubmit = async (data: LoginFormInputs) => {
+    try {
+      await dispatch(loginUser(data)).unwrap();
+      toast("🍀 Welcome!");
+      onClose();
+    } catch {
+      if (error) toast.error(error);
+    }
   };
 
   return (

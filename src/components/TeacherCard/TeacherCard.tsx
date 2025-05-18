@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import type { Teacher } from "../../helpers/App.types";
 import {
   addFavorites,
@@ -26,44 +26,14 @@ const TeacherCard = ({ teacher }: Props) => {
   const [isOpenAdditional, setIsOpenAdditional] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
-  useEffect(() => {
-    if (user?.uid) {
-      dispatch(removeFavorites({ userId: user.uid, teacherId: "t30" }))
-        .unwrap()
-        .then(() => console.log("Removed t30"))
-        .catch(console.error);
-    }
-  }, []);
-
-  console.log("Teacher ID type:", typeof teacher.id);
-  console.log(
-    "Favorite IDs:",
-    favorites.map((f) => ({ id: f.id, type: typeof f.id }))
-  );
-
-  const isFavorite = useMemo(
-    () => favorites.some((fav) => fav?.id === teacher.id),
-    [favorites, teacher.id]
-  );
-
-  console.log("TEACHER ID:", teacher.id);
-  console.log(
-    "FAVORITES:",
-    favorites.map((t) => t.id)
-  );
-  console.log("TEACHER OBJECT:", teacher);
-  console.log("IS FAVORITE:", isFavorite);
+  const isFavorite = favorites.some((fav) => fav?.id === teacher.id);
 
   const handleFavoriteToggle = () => {
     if (!user?.uid) return;
     const payload = { userId: user.uid, teacherId: teacher.id };
-    console.log(isFavorite ? "Removing from favorites" : "Adding to favorites");
+
     if (isFavorite) {
-      console.log("isFavorite", isFavorite);
-      dispatch(removeFavorites(payload))
-        .unwrap()
-        .then(() => console.log("Successfully removed favorite"))
-        .catch((err) => console.error("Failed to remove favorite", err));
+      dispatch(removeFavorites(payload));
     } else {
       dispatch(addFavorites(payload));
     }

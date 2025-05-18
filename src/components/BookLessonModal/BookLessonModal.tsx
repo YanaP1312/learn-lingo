@@ -27,7 +27,7 @@ const BookLessonModal = ({ teacher, onClose }: BookLessonModalProps) => {
   } = useForm<BookLessonData>({ resolver: yupResolver(bookLessonSchema) });
   const onSubmit = (data: BookLessonData) => {
     onClose();
-    toast("🍀  Thanks for your booking! Our manager will contact with you");
+    toast("🍀  Thanks for your booking! Our manager will contact with you.");
     console.log("Book lesson", data);
   };
   return (

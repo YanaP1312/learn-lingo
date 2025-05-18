@@ -32,6 +32,9 @@ const favoritesSlice = createSlice({
     loadMoreFavorites(state) {
       state.visibleCount += 4;
     },
+    clearFavorites(state) {
+      state.favorites = [];
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -47,10 +50,8 @@ const favoritesSlice = createSlice({
         if (teacher && !state.favorites.some((t) => t.id === teacher.id)) {
           state.favorites.push(teacher);
         }
-        console.log("CHECKING IF ALREADY FAVORITE:", teacher?.id);
       })
       .addCase(removeFavorites.fulfilled, (state, action) => {
-        console.log("Removing from state:", action.payload);
         state.favorites = state.favorites.filter(
           (t) => t.id !== action.payload
         );
@@ -67,6 +68,7 @@ export const {
   setFavPriceFilter,
   setFavVisibleCount,
   loadMoreFavorites,
+  clearFavorites,
 } = favoritesSlice.actions;
 
 export const favoritesReducer = favoritesSlice.reducer;
