@@ -53,7 +53,7 @@ const LoginModal = ({ onClose }: Props) => {
         Welcome back! Please enter your credentials to access your account and
         continue your search for an teacher.
       </p>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
         <div className={s.wrapInput}>
           <div>
             <input type="email" {...register("email")} placeholder="Email" />
