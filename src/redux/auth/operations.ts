@@ -26,7 +26,12 @@ export const registerUser = createAsyncThunk(
     if (auth.currentUser) {
       await updateProfile(auth.currentUser, { displayName: name });
     }
-    return userCredential.user;
+    const user = userCredential.user;
+    return {
+      uid: user.uid,
+      email: user.email,
+      displayName: name,
+    };
   }
 );
 
@@ -38,7 +43,12 @@ export const loginUser = createAsyncThunk(
       email,
       password
     );
-    return userCredential.user;
+    const user = userCredential.user;
+    return {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+    };
   }
 );
 

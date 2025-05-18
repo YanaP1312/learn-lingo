@@ -16,7 +16,7 @@
   position: absolute;
   top: 110%;
   left: 0;
-  background: #fff;
+  background: var(--background-color);
   border: 1px solid var(--accentColor);
   border-radius: 12px;
   padding: 8px;

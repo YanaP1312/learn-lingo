@@ -34,12 +34,7 @@ function App() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const serializedUser = {
-          uid: user.uid,
-          email: user.email,
-          displayName: user.displayName,
-        };
-        dispatch(setUser(serializedUser));
+        dispatch(setUser(user));
         dispatch(setAuthStatus("authenticated"));
       } else {
         dispatch(setUser(null));

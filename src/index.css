@@ -55,6 +55,11 @@ button {
   font-weight: 700;
 }
 
+button:focus,
+button:active {
+  outline: none;
+}
+
 input,
 textarea {
   font-family: inherit;

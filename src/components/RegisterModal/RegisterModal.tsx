@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { selectError, selectStatus } from "../../redux/auth/selectors";
+import { selectStatus } from "../../redux/auth/selectors";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../helpers/validationSchema";
@@ -9,6 +9,7 @@ import ModalButton from "../ModalButton/ModalButton";
 import PasswordInput from "../PasswordInput/PasswordInput";
 import s from "./RegisterModal.module.css";
 import { toast } from "react-toastify";
+import { getFirebaseErrorMessage } from "../../helpers/firebase";
 
 interface Props {
   onClose: () => void;
@@ -23,21 +24,24 @@ interface RegisterFormInputs {
 const RegisterModal = ({ onClose }: Props) => {
   const dispatch = useAppDispatch();
   const status = useAppSelector(selectStatus);
-  const error = useAppSelector(selectError);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<RegisterFormInputs>({ resolver: yupResolver(registerSchema) });
+  } = useForm<RegisterFormInputs>({
+    resolver: yupResolver(registerSchema),
+    mode: "onChange",
+  });
 
   const onSubmit = async (data: RegisterFormInputs) => {
     try {
       await dispatch(registerUser(data)).unwrap();
       toast("🍀 Welcome!");
       onClose();
-    } catch {
-      if (error) toast.error(error);
+    } catch (err: any) {
+      const message = getFirebaseErrorMessage(err.code);
+      toast.error(message);
     }
   };
 

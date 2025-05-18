@@ -25,9 +25,9 @@ const PasswordInput = ({
           placeholder={placeholder}
           className={s.input}
         />
-        <button onClick={togglePassword} className={s.iconPsw}>
+        <span onClick={togglePassword} className={s.iconPsw}>
           {showPassword ? <PiEyeThin /> : <PiEyeSlashThin />}
-        </button>
+        </span>
       </div>
       {error && <p className="error">{error}</p>}
     </div>

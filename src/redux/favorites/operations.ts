@@ -16,8 +16,6 @@ export const fetchFavorites = createAsyncThunk(
     const teacherPromises = teacherIds.map(async (id) => {
       const teacherSnapshot = await get(ref(db, `teachers/${id}`));
       const teacher = teacherSnapshot.val();
-      console.log("ADDED FAVORITE:", { ...teacher, id });
-
       return teacher ? { ...teacher, id } : null;
     });
 
@@ -37,7 +35,6 @@ export const addFavorites = createAsyncThunk(
     await set(userFavRef, true);
     const teacherSnapshot = await get(ref(db, `teachers/${teacherId}`));
     const teacher = teacherSnapshot.val();
-    console.log("ADDED FAVORITE:", { ...teacher, id: teacherId });
 
     return teacher ? { ...teacher, id: teacherId } : null;
   }

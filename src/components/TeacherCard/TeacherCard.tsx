@@ -14,6 +14,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { IoBookOutline } from "react-icons/io5";
+import { toast } from "react-toastify";
 
 interface Props {
   teacher: Teacher;
@@ -29,7 +30,10 @@ const TeacherCard = ({ teacher }: Props) => {
   const isFavorite = favorites.some((fav) => fav?.id === teacher.id);
 
   const handleFavoriteToggle = () => {
-    if (!user?.uid) return;
+    if (!user?.uid) {
+      toast("📌  This functionality is available only to authorized users.");
+      return;
+    }
     const payload = { userId: user.uid, teacherId: teacher.id };
 
     if (isFavorite) {
@@ -90,7 +94,7 @@ const TeacherCard = ({ teacher }: Props) => {
 
         <ul className={s.listAdditional}>
           <li>
-            <p className={s.topic}>Speacks:</p>&nbsp;
+            <p className={s.topic}>Speaks:</p>&nbsp;
             <b>
               <u>{teacher.languages.join(", ")}</u>
             </b>
