@@ -1,6 +1,10 @@
-# 🧑‍🏫 Language Teachers Booking App
+# 🧑‍🏫   [Language Teachers Booking App](learn-lingo-pied.vercel.app)
 
 A desktop-focused web application that connects users with online language teachers. The platform enables users to register, browse a catalog of language teachers, filter based on criteria, add favorites, and book trial lessons.
+
+<img width="1920" height="1066" alt="ЛернЛинго" src="https://github.com/user-attachments/assets/8be9e2c0-f9b1-4b5a-96d2-a01930a67404" />
+<img width="1920" height="983" alt="ЛернЛинг2" src="https://github.com/user-attachments/assets/d6675e14-8444-4697-aff4-2cff7a107f44" />
+<img width="1920" height="984" alt="Лерн Линг 3" src="https://github.com/user-attachments/assets/396e61c6-9b40-4f47-8dee-35ea98ace544" />
 
 ## 📌 About the Project
 
